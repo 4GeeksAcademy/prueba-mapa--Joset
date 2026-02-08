@@ -1,4 +1,4 @@
-# ignore all files starting with .
+# ignore all files starting with . Elementos que no queremos que se suban al repositorio
 .*
 
 # track this file .gitignore (i.e. do NOT ignore it)
