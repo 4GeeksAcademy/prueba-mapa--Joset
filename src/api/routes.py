@@ -6,7 +6,7 @@ from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from sqlalchemy import select 
-from flask_jwt_extended import create_access_token, get_jwt_identity
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required   
 
 api = Blueprint('api', __name__)
 
@@ -41,7 +41,7 @@ def register():
 
     return jsonify({"msj": "User created successfully"}), 201 
 
-@api.route("/login", methods=["POST"])
+@api.route("/login", methods=["POST"]) #decorador - endpoint - metodo
 def login():
     data = request.get_json() 
     email = data.get("email")
@@ -57,7 +57,7 @@ def login():
         access_token = create_access_token(identity=str(user.id))
         return jsonify({"msg": "Login successfull", "token": access_token}), 200
     else:
-        return jsonify({"error": "email and password are required"}), 400
+        return jsonify({"error": "email and password are required"}), 404
     
 @api.route("/profile", methods=["GET"]) 
 @jwt_required() #decorador nuevo porque esta ruta pedira siempre token
@@ -66,7 +66,8 @@ def get_profile():
     user = db.session.get(User, int(user_id))
     if not user: 
         return jsonify({"msg": "User not found"}), 400
-    return jsonify({user.serialize()}), 200
+    return jsonify(user.serialize()), 200
+
 
     #TOKEN-----DOCUMENTACION--- https://flask-jwt-extended.readthedocs.io/en/stable/installation.html
     #instalar:  pipenv install flask-jwt-extended
