@@ -39,7 +39,7 @@ console.log(user);
             {loading ? (<div className="spinner-border" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>):(
-                <h1>Esto hay que cambiarlo</h1>
+                <h1>Pagina en construcción</h1>
             )}
         </>
     )

@@ -1,5 +1,6 @@
 //Creamos services en frontend porque necesitamos hacer peticiones al backend para conseguis datos del usuario
 //Declaramos la funcion asincrona que se encarga de loguear al usuario
+
 export const login = async (user, navigate) => {
     //buscamos la url que almacenamos del backend en el archivo .env + login de usuario/api/login
     const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/login`, {
@@ -32,4 +33,22 @@ export const privateCheck = async () => {
     }
     return data;
 };
+
+export const register = async (user, navigate) => {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(user)
+    })
+
+    const data = await response.json()
+
+    if (!response.ok) {
+        alert(data.msg)
+        return data
+    }
+
+    navigate("/", { state: { msg: "Usuario creado satisfactoriamente" } }) // Redirige al login (Home)
+}
+
 
