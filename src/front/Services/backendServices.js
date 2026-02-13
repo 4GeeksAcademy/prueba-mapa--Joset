@@ -28,7 +28,7 @@ export const privateCheck = async () => {
     );
 
     const data = await response.json();
-    if (!response.ok){
+    if (!response.ok) {
         return false;
     }
     return data;
@@ -48,7 +48,8 @@ export const register = async (user, navigate) => {
         return data
     }
 
-    navigate("/", { state: { msg: "Usuario creado satisfactoriamente" } }) // Redirige al login (Home)
+    return { success: true, msg: "Usuario creado satisfactoriamente" };
 }
 
+//NOTA 12/2           : HAY QUE ARREGLAR LA ALERTA. QUE ESTE EN EL FORMULARIO Y NO EN LA WEB
 

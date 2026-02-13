@@ -1,14 +1,18 @@
-/* Contenedor de toda la página, centrado vertical y horizontal */
+/* -------------------- BODY Y FONDO -------------------- */
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* -------------------- CONTENEDOR AUTH -------------------- */
 .auth-page {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Contenedor del formulario */
 .auth-container {
     width: 100%;
     max-width: 420px;
@@ -22,7 +26,7 @@
     color: white;
 }
 
-/* Imagen estilo RigoBot */
+/* -------------------- AVATAR -------------------- */
 .auth-container .auth-avatar {
     width: 90px;
     border-radius: 50%;
@@ -30,7 +34,7 @@
     margin-bottom: 1.5rem;
 }
 
-/* Título y subtítulo */
+/* -------------------- TITULOS Y PARÁGRAFOS -------------------- */
 .auth-container h2 {
     font-weight: 700;
     margin-bottom: 0.5rem;
@@ -42,7 +46,7 @@
     margin-bottom: 1.5rem;
 }
 
-/* Labels */
+/* -------------------- LABELS -------------------- */
 .auth-container label {
     display: block;
     margin-bottom: 0.5rem;
@@ -51,7 +55,7 @@
     color: rgba(255, 255, 255, 0.75);
 }
 
-/* Inputs */
+/* -------------------- INPUTS -------------------- */
 .auth-container input {
     width: 100%;
     padding: 0.5rem 1rem;
@@ -69,7 +73,7 @@
     box-shadow: 0 0 10px rgba(0, 198, 255, 0.5);
 }
 
-/* Botón principal */
+/* -------------------- BOTONES PRINCIPALES -------------------- */
 .auth-container button {
     width: 100%;
     padding: 0.75rem;
@@ -86,7 +90,7 @@
     opacity: 0.9;
 }
 
-/* Mensajes de usuario no registrado / errores */
+/* -------------------- MENSAJES DE ERROR -------------------- */
 .auth-error, 
 .auth-container .auth-footer p {
     color: #ffcc80;
@@ -110,19 +114,7 @@
     color: #1e1e2f;
 }
 
-/* Mensajes de usuario registrado  */
-
-.auth-success {
-    background-color: #4BB543; 
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    text-align: center;
-    margin-bottom: 1rem;
-    font-weight: 500;
-}
-
-/* -------------------- ALERTA ÉXITO -------------------- */
+/* -------------------- MENSAJE DE ÉXITO -------------------- */
 .auth-success {
     background: linear-gradient(135deg, #00c6ff, #0072ff); 
     color: white;
@@ -139,3 +131,57 @@
     box-shadow: 0 6px 16px rgba(0, 198, 255, 0.6);
     transform: translateY(-2px);
 }
+
+/* -------------------- NAVBAR INTEGRADO -------------------- */
+.custom-navbar {
+    background: transparent;
+    padding: 1rem 2rem;
+}
+
+.custom-navbar .navbar-brand {
+    color: white !important;
+    font-weight: 700;
+}
+
+.custom-navbar .navbar-brand:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Botones de navbar */
+.custom-navbar .nav-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    font-weight: 600;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.custom-navbar .nav-btn:hover {
+    opacity: 0.9;
+}
+
+.custom-navbar .nav-btn-danger {
+    background: transparent;
+    border: 1px solid #ffcc80;
+    color: #ffcc80;
+}
+
+.custom-navbar .nav-btn-danger:hover {
+    background: #ffcc80;
+    color: #1e1e2f;
+}
+
+.decorative-img {
+  width: 700px;   
+  height: auto;   
+  display: block;
+  margin: 1rem auto;  
+  border-radius: 10px; 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+}
+
+

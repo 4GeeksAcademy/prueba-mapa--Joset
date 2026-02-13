@@ -51,7 +51,7 @@ export const Signup = () => {
         await register({
             email: user.email,
             password: user.password
-        }, navigate)
+        }, navigate("/"))
 
         setLoading(false)
     }

@@ -1,49 +1,46 @@
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { privateCheck } from "../Services/backendServices"
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { privateCheck } from "../Services/backendServices";
+import bgImage from "../assets/img/Gemini_Generated_Image_30n2lw30n2lw30n2.png";
 
 export const Private = () => {
-    const navigate = useNavigate()
-    const [loading, setLoading] = useState(true)
-    const [user, setUser] = useState(null)
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
-    const checkToken = async () => {
-        const response = await privateCheck()
-        console.log(response);
-        if(response) {
-            setUser(response)
-            setLoading(false)
-        }
-        else{
-            localStorage.removeItem("token")
-            navigate("/")
-        }
-    }
+  useEffect(() => {
+    const checkAuth = async () => {
+      const response = await privateCheck();
+      if (response) {
+        setUser(response);
+        setLoading(false);
+      } else {
+        localStorage.removeItem("token");
+        navigate("/");
+      }
+    };
 
-console.log(user);
-    
+    checkAuth();
+  }, [navigate]);
 
-    //comprobar si el token no existe navega a home. Y si existe 
-    useEffect(() => {
-        if (!localStorage.getItem("token")) {
-            navigate("/")
-        } else {
-            if (checkToken){
-                setLoading(false)
-                setUser(checkToken)
-            }
-        }
-    }, [])
+  if (loading) {
     return (
-        <>
-            {loading ? (<div className="spinner-border" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </div>):(
-                <h1>Pagina en construcción</h1>
-            )}
-        </>
-    )
-}
+      <div className="spinner-border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <img 
+  src={bgImage} 
+  alt="Decorativa" 
+  className="decorative-img" 
+/>
+    </div>
+  );
+};
 
 
 //falta: si user no registrado dar la opcion de registrarse
