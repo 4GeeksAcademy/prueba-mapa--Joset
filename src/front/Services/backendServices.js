@@ -1,9 +1,11 @@
-//Creamos services en frontend porque necesitamos hacer peticiones al backend para conseguis datos del usuario
+//Creamos services en frontend porque necesitamos hacer peticiones al backend para conseguir datos del usuario
 //Declaramos la funcion asincrona que se encarga de loguear al usuario
 
-export const login = async (user, navigate) => {
+export const login = async (user) => {
+
     //buscamos la url que almacenamos del backend en el archivo .env + login de usuario/api/login
     const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/login`, {
+
         method: "POST",                 //+ metodo post 
         body: JSON.stringify(user),      // + body(donde se consiguen los datos de usuario ej: data, user, etc)
         headers: {
@@ -12,11 +14,11 @@ export const login = async (user, navigate) => {
     })
     const data = await response.json()
     if (!response.ok) {
-        alert(data.msg) //si la respuesta no es exitosa se genera la alerta
-        return data;
+        //alert(data.msg) //si la respuesta no es exitosa se genera la alerta
+        return { error: true, msg: data.msg };
     }
-    localStorage.setItem("token", data.token)
-    navigate("/private")
+    localStorage.setItem("token", data.token);
+    return { success: true };
 };
 
 export const privateCheck = async () => {
@@ -34,7 +36,7 @@ export const privateCheck = async () => {
     return data;
 };
 
-export const register = async (user, navigate) => {
+export const register = async (user) => {
     const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -44,12 +46,12 @@ export const register = async (user, navigate) => {
     const data = await response.json()
 
     if (!response.ok) {
-        alert(data.msg)
-        return data
+        //alert(data.msg)
+        return { error: true, msg: data.msg };
     }
 
     return { success: true, msg: "Usuario creado satisfactoriamente" };
 }
 
-//NOTA 12/2           : HAY QUE ARREGLAR LA ALERTA. QUE ESTE EN EL FORMULARIO Y NO EN LA WEB
+
 

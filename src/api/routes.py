@@ -23,7 +23,7 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-@api.route("/register", methods=["POST"])
+@api.route("/register", methods=["POST"]) 
 def register():
     data = request.get_json() #porque la info de usuario viene de fronted
     email = data.get("email")

@@ -60,18 +60,18 @@ export const Signup = () => {
     return (
         <div className="auth-page">
             <div className="auth-container">
-                {/* Imagen RigoBot */}
+
                 <img src={rigoImageUrl} alt="RigoBot" className="auth-avatar" />
 
-                <h2 className="fw-bold mb-3">Registro</h2>
-                <p className="text-light opacity-75 mb-4">Crea tu cuenta para continuar</p>
+                <h2 className="fw-bold mb-3">Register</h2>
+                <p className="text-light opacity-75 mb-4">Create your account to continue</p>
 
                 <form onSubmit={handleSubmit} className="text-start">
                     <div className="mb-3">
                         <label className="form-label">Email</label>
                         <input
                             type="email"
-                            placeholder="Ingresa tu email"
+                            placeholder="Enter your email"
                             className="form-control"
                             //cuando se hace un handleChange debemos acompañar el input con:
                             name="email"
@@ -82,10 +82,10 @@ export const Signup = () => {
                     </div>
 
                     <div className="mb-3">
-                        <label className="form-label">Contraseña</label>
+                        <label className="form-label">Password</label>
                         <input
                             type="password"
-                            placeholder="Ingresa tu contraseña"
+                            placeholder="Enter your password"
                             className="form-control"
                             name="password"
                             value={user.password}
@@ -95,10 +95,10 @@ export const Signup = () => {
                     </div>
 
                     <div className="mb-3">
-                        <label className="form-label">Confirmar contraseña</label>
+                        <label className="form-label">Confirm Password</label>
                         <input
                             type="password"
-                            placeholder="Confirma tu contraseña"
+                            placeholder="Confirm your password"
                             className="form-control"
                             name="confirmPassword"
                             value={user.confirmPassword}

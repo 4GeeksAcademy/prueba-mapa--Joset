@@ -184,4 +184,8 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
 }
 
+.footer {
+    color: white; /* Hace todo el texto del footer blanco */
+}
+
 

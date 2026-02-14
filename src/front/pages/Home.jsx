@@ -7,43 +7,56 @@ import '../index.css';
 
 export const Home = () => {
 
-  const { store, dispatch } = useGlobalReducer() //Creamos el useState para almacenar la data del usuario
+  const { store, dispatch } = useGlobalReducer()
   const navigate = useNavigate()
   const location = useLocation();
   const [successMsg, setSuccessMsg] = useState("");
+  const [error, setError] = useState(null);
+  const [userNotFound, setUserNotFound] = useState(false); // <- Estado añadido para mostrar registro
+
 
   // ------------------- ESTADOS -------------------
-  const [user, setUser] = useState({
+  const [user, setUser] = useState({ //Creamos el useState para almacenar la data del usuario
     email: "",
     password: ""
   })
-
-  const [userNotFound, setUserNotFound] = useState(false); // <- Estado añadido para mostrar registro
 
   // ------------------- FUNCIONES -------------------
   const handleChange = (e) => {
     setUser({
       ...user,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value //Actualizamos en el estado user la propiedad del input
     });
     setUserNotFound(false); // <- Oculta el mensaje si empieza a escribir
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+    setError(null);
+    setUserNotFound(false);
+
     if (!user.email || !user.password) {
-      alert("All fields are required");
+      setError("All fields are required");
       return;
     }
     // Usamos await para esperar respuesta del backend
-    const response = await login(user, navigate);
-    if (response?.msg === "Invalid email or password") {
-      setUserNotFound(true); // <- activa el mensaje de registrarse
+      const response = await login(user);
+
+  if (response?.error) {
+    if (response.msg === "Invalid email or password") {
+      setUserNotFound(true);
+    } else {
+      setError(response.msg);
     }
+    return;
+  }
+
+  navigate("/private");
   };
 
 
-  // ------------------- CARGA MENSAJE -------------------
+  // ------------------- Esto venia por defecto..Funciona ?  -------------------
   const loadMessage = async () => {
     try {
       const backendUrl = import.meta.env.VITE_BACKEND_URL
@@ -86,10 +99,15 @@ export const Home = () => {
         )}
 
 
-        <h2 className="fw-bold">Welcome Back</h2>
+        <h2 className="fw-bold">Welcome</h2>
         <p className="text-light opacity-75 mb-4">
           Sign in to continue
         </p>
+        {error && (
+  <div className="alert alert-warning text-center">
+    {error}
+  </div>
+)}
 
         <form onSubmit={handleSubmit} className="text-start">
           <div className="mb-3">
