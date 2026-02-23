@@ -188,4 +188,96 @@ body {
     color: white; /* Hace todo el texto del footer blanco */
 }
 
+/*-------- MAPA PRUEBA  -----*/
 
+/* Contenedor principal para que ocupe toda la pantalla */
+.store-locator-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Sidebar corregida */
+.sidebar {
+    width: 25%;
+    height: 100%;
+    background-color: #f4f3e7;
+    overflow-y: auto;
+    z-index: 1;
+    border-right: 1px solid rgba(0,0,0,0.1);
+    box-sizing: border-box;
+    padding: 1rem;
+}
+
+/* Mapa corregido para que use el espacio restante */
+.map {
+    flex: 1; /* Ocupa el 75% restante automáticamente */
+    height: 100%;
+}
+
+/* Título de la barra lateral */
+.sidebar-title {
+  color: #00473c;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+}
+
+/* Estilos de las tarjetas de tiendas */
+.store-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid #00473c;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  padding: 1rem;
+  background-color: transparent;
+}
+
+.store-item:hover, .store-item.active {
+  background-color: white;
+}
+
+.store-name {
+  margin-bottom: 0.5rem;
+  color: #00473c;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 0;
+}
+
+.store-details {
+  color: #00473c;
+  line-height: 1.5;
+  font-weight: 300;
+  font-size: 0.9rem;
+}
+
+.store-details .label {
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+/* Marcadores con tus rutas originales */
+.marker {
+  background-image: url('./assets/img/markers/square-parking-solid-full.svg'); /* Tu ruta original */
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 37px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.marker:hover {
+  opacity: 0.8;
+}
+
+.marker.active {
+  background-image: url('./assets/img/markers/sg-marker-selected.svg'); /* Tu ruta original */
+}
